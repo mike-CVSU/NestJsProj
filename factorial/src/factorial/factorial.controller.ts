@@ -1,17 +1,22 @@
 import { Controller,Get, Param } from '@nestjs/common';
 
 @Controller('factorial')
-export class FactorialController {
-    @Get(":num")
-  identifyNum(@Param('num') num: any) {
-    // Since the original code calculates the factorial of 5,
-    // we'll calculate it for 5 instead of using 'num'.
-    let total = 1;
-    for (let i = 1; i <= 5; i++) {
-      total *= i;  // Calculate factorial of 5
+export class FactorialController{
+   
+    const number = parseInt(num, 10);
+
+   
+    if (isNaN(number) || number < 0) {
+      return { error: 'Please provide a valid positive integer' };
     }
 
-    // Return the result as JSON (no need for HTML formatting)
+   
+    let total = 1;
+    for (let i = 1; i <= number; i++) {
+      total *= i;  
+    }
+
+    
     return { factorial: total };
   }
 }
