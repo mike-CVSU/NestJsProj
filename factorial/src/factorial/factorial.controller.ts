@@ -2,9 +2,9 @@ import { Controller,Get, Param } from '@nestjs/common';
 
 @Controller('factorial')
 export class FactorialController{
-   
-    const number = parseInt(num, 10);
-
+    @Get(':number')
+    FactorialNum(@Param('number') number:any){
+  
    
     if (isNaN(number) || number < 0) {
       return { error: 'Please provide a valid positive integer' };
